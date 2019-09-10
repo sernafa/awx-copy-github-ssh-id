@@ -1,0 +1,19 @@
+---
+- name: [awx-copy-github-ssh-id]
+  hosts: all
+
+  vars_prompt:
+    - name: github_user
+      prompt: "GitHub Username: "
+      private: no
+    - name: ansible_user
+      prompt: "Host Remote User [root]: "
+      private: no
+    - name: ansible_ssh_pass
+      prompt: "Host Remote password: "
+      private: yes
+
+  tasks:
+    - name: [copy githuh user key to remote host]
+      authorized_key: user=root key=https://github.com/{{ github_user }}.keys
+
