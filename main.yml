@@ -1,5 +1,5 @@
 ---
-- name: [awx-copy-github-ssh-id]
+- name: awx-copy-github-ssh-id
   hosts: all
 
   vars_prompt:
@@ -14,6 +14,6 @@
       private: yes
 
   tasks:
-    - name: [copy githuh user key to remote host]
+    - name: copy githuh user key to remote host
       authorized_key: user=root key=https://github.com/{{ github_user }}.keys
 
